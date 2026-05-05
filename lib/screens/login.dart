@@ -27,11 +27,10 @@ class _LoginPageState extends State<LoginPage> {
   bool _isPasswordVisible = false;
 
   // I colori principali della nostra login page
-  static const Color primaryYellow = Color(0xFFFFD158); // giallo
-  static const Color primaryGreen = Color(0xFF4CAF50);  // verde
-  static const Color bgColor = Color(0xFFFFFDE7);       // sfondo giallo chiarissimo
-  static const Color textDark = Color(0xFF2A2859);      // testo scuro
-
+  static const Color primaryPurple = Color(0xFF5D59B5); // viola principale
+  static const Color bgLight = Color(0xFFEEF0FA);       // sfondo viola chiarissimo
+  static const Color textDark = Color(0xFF2A2859);       // testo scuro
+  static const Color textLight = Color(0xFF8684C6);      // testo secondario
   // Come nella splash screen, dispose() libera la memoria
   // quando l'utente lascia questa schermata
   @override
@@ -54,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bgColor, // sfondo giallo chiarissimo
+      backgroundColor: bgLight, // sfondo giallo chiarissimo
       body: SafeArea(
         // SafeArea evita che il contenuto finisca sotto
         // la "frangetta" o la barra in basso dell'iPhone
@@ -81,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
 
               // --- NOME APP ---
               const Text(
-                'move with pip',
+                'TwiC',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -93,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 8),
 
               const Text(
-                'Bentornata!',
+                'Welcome back!',
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.grey,
@@ -121,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                   focusedBorder: OutlineInputBorder(
                     // focusedBorder = bordo quando il campo è selezionato
                     borderRadius: BorderRadius.circular(16),
-                    borderSide: const BorderSide(color: primaryGreen, width: 2),
+                    borderSide: const BorderSide(color: primaryPurple, width: 2),
                   ),
                 ),
               ),
@@ -146,7 +145,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
-                    borderSide: const BorderSide(color: primaryGreen, width: 2),
+                    borderSide: const BorderSide(color: primaryPurple, width: 2),
                   ),
                   // suffixIcon = icona a DESTRA del campo
                   // permette di mostrare/nascondere la password
@@ -177,7 +176,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: ElevatedButton(
                   onPressed: _handleLogin, // chiama _handleLogin al tap
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: primaryGreen, // sfondo verde
+                    backgroundColor: primaryPurple, // sfondo viola
                     foregroundColor: Colors.white, // testo bianco
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
@@ -207,7 +206,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: const Text(
                       'Registrati',
                       style: TextStyle(
-                        color: primaryGreen,
+                        color: primaryPurple,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

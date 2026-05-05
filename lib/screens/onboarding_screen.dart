@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:speech_balloon/speech_balloon.dart';
 import 'package:lottie/lottie.dart';
 import 'homepage.dart';
+import 'login.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -44,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
       // Go to login page
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: ((context) =>  HomePage())),
+        MaterialPageRoute(builder: ((context) =>  LoginPage())),
       );
     }
   }
