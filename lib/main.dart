@@ -1,24 +1,17 @@
 import 'package:flutter/material.dart';
-
-// Sul nostro branch partiamo direttamente dalla login
-// la splash screen è sul branch della compagna
 import 'screens/login.dart';
 
 void main() {
   runApp(const MyApp());
-}
+} //main
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+  const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Move with Pip',
       debugShowCheckedModeBanner: false,
-
-      // Partiamo dalla LoginPage
-      home: const LoginPage(),
+      home: LoginPage(),
     );
-  }
-}
+  } //build
+}//MyApp
