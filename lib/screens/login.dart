@@ -92,7 +92,11 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 8),
 
               const Text(
-                'Welcome back!',
+                'MOVE YOUR BODY,\n'
+                'CALM YOUR MIND,\n'
+                'Take care of yourself\n'
+                'and your chick with TwiC!',
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.grey,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/onboarding_screen.dart'; 
+import 'screens/splash_logo.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'TwiC',
       debugShowCheckedModeBanner: false,
-      home: const SplashScreen(),
+      home: const SplashLogoScreen(),
     );
   }
 }
