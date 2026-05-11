@@ -169,23 +169,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
           const SizedBox(height: 16),
 
-          // Placeholder del pulcino che esce dall'uovo
-          Stack(
-            alignment: Alignment.center,
-            children: [
-               Container(
-                height: 100,
-                width: 100,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color(0xFFFFD158),
-                ),
-              ),
-              const Icon(Icons.egg, color: Colors.white, size: 80),
-            ],
+          // Animazione del pulcino
+            Lottie.asset(
+            'assets/hatching_chick.json',
+            width: 150,
+            height: 150,   
           ),
 
-          const SizedBox(height: 25),
+          const SizedBox(height: 5),
           const Text(
             'MEET YOUR CHICK',
             style: TextStyle(
@@ -205,7 +196,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               fontFamily: 'serif',
             ),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 5),
           const Text(
             "It'll be by your side every day.\nChoose wisely!",
             textAlign: TextAlign.center,
@@ -215,7 +206,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               height: 1.3,
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 5),
           
           // Griglia dei nomi suggeriti
           Wrap(

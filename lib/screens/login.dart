@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'onboarding_screen.dart';
 
-
 // Import di lottie che abbiamo usato per l'animazione del pulcino. 
 import 'package:lottie/lottie.dart';
 
