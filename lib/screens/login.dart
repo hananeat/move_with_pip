@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-// Importiamo la homepage perché dopo il login ci andremo
-import 'homepage.dart';
+import 'onboarding_screen.dart';
 
 // Import di lottie che abbiamo usato per l'animazione del pulcino. 
 import 'package:lottie/lottie.dart';
@@ -32,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
   static const Color bgColor = Color(0xFFFFFDE7);       // sfondo giallo chiarissimo
   static const Color textDark = Color(0xFF2A2859);      // testo scuro
 
-  // Come nella splash screen, dispose() libera la memoria
+  // Come nell'onboarding screen, dispose() libera la memoria
   // quando l'utente lascia questa schermata
   @override
   void dispose() {
@@ -47,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
     // In futuro qui ci andrà il controllo email/password
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => const HomePage()),
+      MaterialPageRoute(builder: (context) => const OnboardingScreen()),
     );
   }
 

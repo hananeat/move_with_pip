@@ -3,17 +3,17 @@ import 'package:speech_balloon/speech_balloon.dart';
 import 'package:lottie/lottie.dart';
 import 'homepage.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+class OnboardingScreen extends StatefulWidget {
+  const OnboardingScreen({Key? key}) : super(key: key);
 
-  static const routename = 'SplashScreen';
+  static const routename = 'OnboardingScreen';
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  State<OnboardingScreen> createState() => _OnboardingScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
-  // Variables for the splash screen
+class _OnboardingScreenState extends State<OnboardingScreen> {
+  // Variables for the onboarding screen
   final PageController _pageController = PageController();
   int _currentPage = 0;
 
@@ -21,11 +21,12 @@ class _SplashScreenState extends State<SplashScreen> {
   final TextEditingController _nameController = TextEditingController();
   String _chickName = 'Pip'; // default name
 
-  // Colors taken from the design
-  static const Color primaryPurple = Color(0xFF5D59B5);
-  static const Color bgLight = Color(0xFFEEF0FA);
-  static const Color textDark = Color(0xFF2A2859);
-  static const Color textLight = Color(0xFF8684C6); // secondary text
+
+ // Colors for the onboarding screen
+  static const Color primaryYellow = Color(0xFFFFD158); // giallo
+  static const Color primaryGreen = Color(0xFF4CAF50);  // verde
+  static const Color bgColor = Color(0xFFFFFDE7);       // sfondo giallo chiarissimo
+  static const Color textDark = Color(0xFF2A2859);      // testo scuro
 
   @override
   void dispose() {
@@ -44,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
       // Go to login page
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: ((context) =>  HomePage())),
+        MaterialPageRoute(builder: ((context) => const HomePage())),
       );
     }
   }
@@ -57,7 +58,7 @@ class _SplashScreenState extends State<SplashScreen> {
       height: 8.0,
       width: _currentPage == index ? 24.0 : 8.0,
       decoration: BoxDecoration(
-        color: _currentPage == index ? primaryPurple : primaryPurple.withOpacity(0.3),
+        color: _currentPage == index ? primaryGreen : primaryGreen.withOpacity(0.3),
         borderRadius: BorderRadius.circular(4.0),
       ),
     );
@@ -67,10 +68,10 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false, // To avoid errors when the keyboard opens
-      backgroundColor: bgLight,
+      backgroundColor: bgColor,
       body: Stack(
         children: [
-          // Assicura che tutto quello che c'è al suo interno venga disegnato lontano 
+          // SafeArea Assicura che tutto quello che c'è al suo interno venga disegnato lontano 
           //dal "Notch" o oltre la barra in basso degli iPhone, per evitare che i tuoi testi siano coperti dalle icone del telefono.
           SafeArea( 
             child: Column(
@@ -135,7 +136,7 @@ class _SplashScreenState extends State<SplashScreen> {
             'Every step, every night of sleep,\nevery smile...it all counts.',
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: textLight,
+              color: Colors.grey,
               fontSize: 16,
             ),
           ),
@@ -158,37 +159,28 @@ class _SplashScreenState extends State<SplashScreen> {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: primaryPurple.withOpacity(0.3)),
+              border: Border.all(color: primaryGreen.withOpacity(0.3)),
             ),
             child: const Text(
               "Hi! What's my name?",
-              style: TextStyle(color: primaryPurple),
+              style: TextStyle(color: primaryGreen),
             ),
           ),
 
           const SizedBox(height: 16),
 
-          // Placeholder del pulcino che esce dall'uovo
-          Stack(
-            alignment: Alignment.center,
-            children: [
-               Container(
-                height: 100,
-                width: 100,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color(0xFFFFD158),
-                ),
-              ),
-              const Icon(Icons.egg, color: Colors.white, size: 80),
-            ],
+          // Animazione del pulcino
+            Lottie.asset(
+            'assets/hatching_chick.json',
+            width: 150,
+            height: 150,   
           ),
 
-          const SizedBox(height: 25),
+          const SizedBox(height: 5),
           const Text(
             'MEET YOUR CHICK',
             style: TextStyle(
-              color: primaryPurple,
+              color: primaryGreen,
               fontWeight: FontWeight.bold,
               letterSpacing: 1.2,
               fontSize: 12,
@@ -204,17 +196,17 @@ class _SplashScreenState extends State<SplashScreen> {
               fontFamily: 'serif',
             ),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 5),
           const Text(
             "It'll be by your side every day.\nChoose wisely!",
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: textLight,
+              color: Colors.grey,
               fontSize: 16,
               height: 1.3,
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 5),
           
           // Griglia dei nomi suggeriti
           Wrap(
@@ -235,7 +227,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
                   decoration: BoxDecoration(
-                    color: isSelected ? primaryPurple.withOpacity(0.3) : primaryPurple.withOpacity(0.15),
+                    color: isSelected ? primaryGreen.withOpacity(0.3) : primaryGreen.withOpacity(0.15),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Text(
@@ -257,7 +249,7 @@ class _SplashScreenState extends State<SplashScreen> {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(30),
-              border: Border.all(color: primaryPurple.withOpacity(0.3), width: 1.5),
+              border: Border.all(color: primaryGreen.withOpacity(0.3), width: 1.5),
             ),
             child: TextField(
               controller: _nameController,
@@ -273,10 +265,10 @@ class _SplashScreenState extends State<SplashScreen> {
                   });
                 }
               },
-              style: const TextStyle(color: primaryPurple, fontSize: 18),
+              style: const TextStyle(color: primaryGreen, fontSize: 18),
               decoration: InputDecoration(
                 hintText: 'or type your own...',
-                hintStyle: TextStyle(color: primaryPurple.withOpacity(0.5), fontSize: 18),
+                hintStyle: TextStyle(color: primaryGreen.withOpacity(0.5), fontSize: 18),
                 border: InputBorder.none,
                 contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
               ),
@@ -303,7 +295,7 @@ class _SplashScreenState extends State<SplashScreen> {
           SpeechBalloon(
             nipLocation: NipLocation.bottom,
             color: Colors.white,
-            borderColor: primaryPurple,
+            borderColor: primaryGreen,
             borderWidth: 3,
             borderRadius: 30,
             height: 80,
@@ -312,7 +304,7 @@ class _SplashScreenState extends State<SplashScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
               child: Text(
               "Hi! I'm $_chickName,\nnice to meet you!",
-              style: const TextStyle(color: primaryPurple),
+              style: const TextStyle(color: primaryGreen),
               ),
             ),
           ),
@@ -341,7 +333,7 @@ class _SplashScreenState extends State<SplashScreen> {
             "$_chickName can't wait\nto grow alongside you!",
             textAlign: TextAlign.center,
             style: const TextStyle(
-              color: textLight,
+              color: Colors.grey,
               fontSize: 16,
               height: 1.3,
             ),
@@ -359,7 +351,7 @@ class _SplashScreenState extends State<SplashScreen> {
       width: double.infinity,
       height: 55,
       decoration: BoxDecoration(
-        color: isLight ? primaryPurple.withOpacity(0.4) : primaryPurple,
+        color: isLight ? primaryGreen.withOpacity(0.4) : primaryGreen,
         borderRadius: BorderRadius.circular(30),
       ),
       child: Material(
