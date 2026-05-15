@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-// Importiamo la homepage perché dopo il login ci andremo
-import 'homepage.dart';
+import 'onboarding_screen.dart';
 
 // Import di lottie che abbiamo usato per l'animazione del pulcino. 
 import 'package:lottie/lottie.dart';
@@ -27,11 +26,12 @@ class _LoginPageState extends State<LoginPage> {
   bool _isPasswordVisible = false;
 
   // I colori principali della nostra login page
-  static const Color primaryPurple = Color(0xFF5D59B5); // viola principale
-  static const Color bgLight = Color(0xFFEEF0FA);       // sfondo viola chiarissimo
-  static const Color textDark = Color(0xFF2A2859);       // testo scuro
-  static const Color textLight = Color(0xFF8684C6);      // testo secondario
-  // Come nella splash screen, dispose() libera la memoria
+  static const Color primaryYellow = Color(0xFFFFD158); // giallo
+  static const Color primaryGreen = Color(0xFF4CAF50);  // verde
+  static const Color bgColor = Color(0xFFFFFDE7);       // sfondo giallo chiarissimo
+  static const Color textDark = Color(0xFF2A2859);      // testo scuro
+
+  // Come nell'onboarding screen, dispose() libera la memoria
   // quando l'utente lascia questa schermata
   @override
   void dispose() {
@@ -46,14 +46,14 @@ class _LoginPageState extends State<LoginPage> {
     // In futuro qui ci andrà il controllo email/password
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => const HomePage()),
+      MaterialPageRoute(builder: (context) => const OnboardingScreen()),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bgLight, // sfondo giallo chiarissimo
+      backgroundColor: bgColor, // sfondo giallo chiarissimo
       body: SafeArea(
         // SafeArea evita che il contenuto finisca sotto
         // la "frangetta" o la barra in basso dell'iPhone
@@ -80,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
 
               // --- NOME APP ---
               const Text(
-                'TwiC',
+                'move with pip',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -92,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 8),
 
               const Text(
-                'Welcome back!',
+                'Bentornata!',
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.grey,
@@ -120,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                   focusedBorder: OutlineInputBorder(
                     // focusedBorder = bordo quando il campo è selezionato
                     borderRadius: BorderRadius.circular(16),
-                    borderSide: const BorderSide(color: primaryPurple, width: 2),
+                    borderSide: const BorderSide(color: primaryGreen, width: 2),
                   ),
                 ),
               ),
@@ -145,7 +145,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
-                    borderSide: const BorderSide(color: primaryPurple, width: 2),
+                    borderSide: const BorderSide(color: primaryGreen, width: 2),
                   ),
                   // suffixIcon = icona a DESTRA del campo
                   // permette di mostrare/nascondere la password
@@ -176,7 +176,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: ElevatedButton(
                   onPressed: _handleLogin, // chiama _handleLogin al tap
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: primaryPurple, // sfondo viola
+                    backgroundColor: primaryGreen, // sfondo verde
                     foregroundColor: Colors.white, // testo bianco
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
@@ -206,7 +206,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: const Text(
                       'Registrati',
                       style: TextStyle(
-                        color: primaryPurple,
+                        color: primaryGreen,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

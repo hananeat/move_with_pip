@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'screens/onboarding_screen.dart'; 
+import 'screens/login.dart';
+
 void main() {
   runApp(const MyApp());
-}
+} //main
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+  const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'TwiC',
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const SplashScreen(),
+      home: LoginPage(),
     );
-  }
-}
+  } //build
+}//MyApp
