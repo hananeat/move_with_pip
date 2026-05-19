@@ -4,7 +4,7 @@ import 'package:lottie/lottie.dart';
 import 'homepage.dart';
 
 class OnboardingScreen extends StatefulWidget {
-  const OnboardingScreen({Key? key}) : super(key: key);
+  const OnboardingScreen({super.key});
 
   static const routename = 'OnboardingScreen';
 
@@ -12,7 +12,7 @@ class OnboardingScreen extends StatefulWidget {
   State<OnboardingScreen> createState() => _OnboardingScreenState();
 }
 
-class _OnboardingScreenState extends State<OnboardingScreen> {
+class _OnboardingScreenState extends State<OnboardingScreen> with TickerProviderStateMixin {
   // Variables for the onboarding screen
   final PageController _pageController = PageController();
   int _currentPage = 0;
@@ -20,6 +20,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   // Controller for the name text field
   final TextEditingController _nameController = TextEditingController();
   String _chickName = 'Pip'; // default name
+
+  late final AnimationController _lottieController1;
+  late final AnimationController _lottieController2;
+  late final AnimationController _lottieController3;
+
+  @override
+  void initState() {
+    super.initState();
+    _lottieController1 = AnimationController(vsync: this);
+    _lottieController2 = AnimationController(vsync: this);
+  }
 
 
  // Colors for the onboarding screen
@@ -30,6 +41,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   void dispose() {
+    _lottieController1.dispose();
+    _lottieController2.dispose();
     _pageController.dispose();
     _nameController.dispose();
     super.dispose();
@@ -119,6 +132,23 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             'assets/hatching_chick.json',
             width: 200,
             height: 200,   
+            controller: _lottieController1,
+            onLoaded: (composition) {
+              _lottieController1.duration = composition.duration;
+              
+              // Puoi modificare questi valori tra 0.0 (inizio) e 1.0 (fine)
+              final double startPoint = 0.25; // Punto di partenza
+              final double endPoint = 0.43;  // Punto finale
+
+              //_lottieController1.value = startPoint;
+              //_lottieController1.animateTo(endPoint); 
+              
+              // Se invece volessi farla ripetere in loop tra questi due punti, potresti usare:
+                _lottieController1.repeat(
+                 min: startPoint,
+                 max: endPoint, 
+                 period: const Duration(milliseconds: 100)); 
+            },
           ),
           const SizedBox(height: 16),
           const Text(
@@ -154,16 +184,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: primaryGreen.withOpacity(0.3)),
-            ),
-            child: const Text(
-              "Hi! What's my name?",
-              style: TextStyle(color: primaryGreen),
+          SpeechBalloon(
+            nipLocation: NipLocation.bottom,
+            color: Colors.white,
+            borderColor: primaryGreen,
+            borderWidth: 3,
+            borderRadius: 20,
+            height: 63,
+            width: 120,
+            child: const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Text(
+                "Hi! What's my name?",
+                style: TextStyle(color: primaryGreen),
+              ),
             ),
           ),
 
@@ -174,8 +208,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             'assets/hatching_chick.json',
             width: 150,
             height: 150,   
-          ),
+            controller: _lottieController2,
+            onLoaded: (composition) {
+              _lottieController2.duration = composition.duration;
+              
+              // Puoi modificare questi valori tra 0.0 (inizio) e 1.0 (fine)
+              final double startPoint = 0.43; // Punto di partenza
+              final double endPoint = 0.6;  // Punto finale
 
+              // Se invece volessi farla ripetere in loop tra questi due punti, potresti usare:
+                _lottieController2.repeat(
+                 min: startPoint,
+                 max: endPoint, 
+                 period: const Duration(milliseconds: 1200)); 
+            },
+          ),
           const SizedBox(height: 5),
           const Text(
             'MEET YOUR CHICK',
@@ -196,7 +243,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               fontFamily: 'serif',
             ),
           ),
-          const SizedBox(height: 5),
+          const SizedBox(height: 1),
           const Text(
             "It'll be by your side every day.\nChoose wisely!",
             textAlign: TextAlign.center,
@@ -211,8 +258,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           // Griglia dei nomi suggeriti
           Wrap(
             alignment: WrapAlignment.center,
-            spacing: 12.0,
-            runSpacing: 12.0,
+            spacing: 8.0,
+            runSpacing: 8.0,
             children: ['Pip', 'Sol', 'Brio', 'Luna', 'Fil'].map((name) {
               final isSelected = _chickName == name;
               return GestureDetector(
@@ -249,7 +296,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(30),
-              border: Border.all(color: primaryGreen.withOpacity(0.3), width: 1.5),
+              border: Border.all(color: primaryGreen, width: 1.5),
             ),
             child: TextField(
               controller: _nameController,
@@ -314,7 +361,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           Lottie.asset(
             'assets/hatching_chick.json',
             width: 150,
-            height: 150,),
+            height: 150,
+          ),
 
           const SizedBox(height:10),
          
