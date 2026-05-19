@@ -8,7 +8,7 @@ import 'package:lottie/lottie.dart';
 // StatefulWidget perché la pagina deve "reagire" 
 // quando l'utente scrive nei campi o preme il bottone
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   static const routename = 'LoginPage';
 
